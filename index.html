@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <style>
+    /* * Original UI Design/Code by Kan3an (https://codepen.io/Kan3an/pen/qEZzbom)
+    * Modified by Shawn - 2026
+    */
     /* ============================================
    CSS VARIABLES & THEME
    ============================================ */
@@ -916,49 +919,28 @@
       font-size: 0.85rem;
     }
 
-    .skill-row {
-      margin-bottom: 18px;
-    }
-
-    .skill-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .skill-row__header {
+    .skill-list {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .skill-row__name {
+    .skill-item {
+      padding: 8px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
       font-size: 13px;
       font-weight: 500;
       font-family: var(--font-mono);
       color: var(--text);
+      transition: var(--transition);
     }
 
-    .skill-row__pct {
-      font-size: 12px;
-      font-family: var(--font-mono);
+    .skill-item:hover {
+      border-color: var(--accent);
       color: var(--accent);
-      font-weight: 600;
-    }
-
-    .skill-row__bar {
-      height: 8px;
-      background: var(--bg);
-      border-radius: 4px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .skill-row__fill {
-      height: 100%;
-      width: 0%;
-      border-radius: 4px;
-      background: var(--gradient-soft);
-      position: relative;
-      transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+      background: var(--accent-dim);
     }
 
     /* ============================================
@@ -1862,119 +1844,37 @@
         <div class="skills__grid">
           <div class="skill-category">
             <h3 class="skill-category__title"><i class="fas fa-palette"></i> Frontend</h3>
-            <div class="skill-row" data-percent="90">
-              <div class="skill-row__header">
-                <span class="skill-row__name">Angular</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="85">
-              <div class="skill-row__header">
-                <span class="skill-row__name">TypeScript</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="85">
-              <div class="skill-row__header">
-                <span class="skill-row__name">HTML / CSS / JS</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="70">
-              <div class="skill-row__header">
-                <span class="skill-row__name">GSAP / Three.js</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
+            <div class="skill-list">
+              <span class="skill-item">Angular</span>
+              <span class="skill-item">TypeScript</span>
+              <span class="skill-item">HTML</span>
+              <span class="skill-item">CSS</span>
+              <span class="skill-item">JavaScript</span>
+              <span class="skill-item">GSAP</span>
+              <span class="skill-item">Three.js</span>
             </div>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title"><i class="fas fa-server"></i> Backend & DB</h3>
-            <div class="skill-row" data-percent="88">
-              <div class="skill-row__header">
-                <span class="skill-row__name">Spring Boot</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="88">
-              <div class="skill-row__header">
-                <span class="skill-row__name">Java</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="80">
-              <div class="skill-row__header">
-                <span class="skill-row__name">SQL / DB Design</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="75">
-              <div class="skill-row__header">
-                <span class="skill-row__name">RESTful API</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
+            <div class="skill-list">
+              <span class="skill-item">Spring Boot</span>
+              <span class="skill-item">Java</span>
+              <span class="skill-item">SQL</span>
+              <span class="skill-item">DB Design</span>
+              <span class="skill-item">RESTful API</span>
             </div>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title"><i class="fas fa-tools"></i> Tools & Design</h3>
-            <div class="skill-row" data-percent="85">
-              <div class="skill-row__header">
-                <span class="skill-row__name">Git / GitHub</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="80">
-              <div class="skill-row__header">
-                <span class="skill-row__name">Figma / UI Design</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="70">
-              <div class="skill-row__header">
-                <span class="skill-row__name">GCP / Cloud</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
-            </div>
-            <div class="skill-row" data-percent="75">
-              <div class="skill-row__header">
-                <span class="skill-row__name">SD Spec / Documentation</span>
-                <span class="skill-row__pct">0%</span>
-              </div>
-              <div class="skill-row__bar">
-                <div class="skill-row__fill"></div>
-              </div>
+            <div class="skill-list">
+              <span class="skill-item">Git</span>
+              <span class="skill-item">GitHub</span>
+              <span class="skill-item">Figma</span>
+              <span class="skill-item">UI Design</span>
+              <span class="skill-item">GCP</span>
+              <span class="skill-item">Cloud</span>
+              <span class="skill-item">SD Spec</span>
+              <span class="skill-item">Documentation</span>
             </div>
           </div>
         </div>
@@ -2296,13 +2196,7 @@
                 <div class="contact__value">shawn110657@gmail.com</div>
               </div>
             </div>
-            <div class="contact__item">
-              <div class="contact__icon"><i class="fas fa-phone"></i></div>
-              <div>
-                <div class="contact__label">Phone</div>
-                <div class="contact__value">0975-414-992</div>
-              </div>
-            </div>
+
             <div class="contact__item">
               <div class="contact__icon"><i class="fas fa-map-marker-alt"></i></div>
               <div>
@@ -2337,7 +2231,7 @@
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__text">© 2025 <strong>Shawn Lai</strong> — Built with passion & code</div>
+      <div class="footer__text">© 2025 <strong>Shawn Lai</strong></div>
       <div class="footer__social">
         <a href="https://www.shawndesigner.com/" target="_blank" class="footer__social-link" title="Website"><i
             class="fas fa-globe"></i></a>
@@ -2367,7 +2261,6 @@
         initCards();
         initTheme();
         initNav();
-        initSkills();
         initTimeline();
         initProjects();
         initStats();
@@ -2436,27 +2329,6 @@
             l.classList.toggle('active', l.dataset.section === current);
           });
         });
-      }
-
-      /* ---------- SKILLS ---------- */
-      function initSkills() {
-        const obs = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              const row = e.target;
-              const pct = parseInt(row.dataset.percent);
-              const fill = row.querySelector('.skill-row__fill');
-              const label = row.querySelector('.skill-row__pct');
-              fill.style.width = pct + '%';
-              anime({
-                targets: { v: 0 }, v: pct, duration: 1500, easing: 'easeOutExpo',
-                update: a => { label.textContent = Math.floor(a.animatables[0].target.v) + '%'; }
-              });
-              obs.unobserve(row);
-            }
-          });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('.skill-row').forEach(r => obs.observe(r));
       }
 
       /* ---------- TIMELINE ---------- */
