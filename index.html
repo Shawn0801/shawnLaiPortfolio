@@ -749,109 +749,146 @@
       }
     }
 
-    /* -- Code Block Card -- */
-    .card--code {
+    /* -- Gallery Card -- */
+    .card--gallery {
       grid-column: span 2;
       grid-row: span 2;
-      padding: 28px;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      line-height: 2;
+      padding: 0;
       overflow: hidden;
       position: relative;
     }
 
-    .code__deco-circle {
+    .gallery__container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .gallery__slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .gallery__slide {
+      width: 100%;
+      height: 100%;
       position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 1px solid rgba(236, 112, 153, 0.12);
-      animation: decoSpin 20s linear infinite;
-    }
-
-    .code__deco-circle.c2 {
-      top: auto;
-      bottom: -30px;
-      right: auto;
-      left: -30px;
-      width: 90px;
-      height: 90px;
-      border-color: rgba(192, 132, 252, 0.1);
-      animation-direction: reverse;
-      animation-duration: 15s;
-    }
-
-    @keyframes decoSpin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .code__dots {
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
       display: flex;
-      gap: 6px;
-      margin-bottom: 14px;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
     }
 
-    .code__dots span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+    .gallery__slide.active {
+      opacity: 1;
+      z-index: 1;
     }
 
-    .code__dots span:nth-child(1) {
-      background: #f87171;
+    .gallery__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .code__dots span:nth-child(2) {
-      background: #fbbf24;
+    .gallery__slide-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
     }
 
-    .code__dots span:nth-child(3) {
-      background: #5eead4;
-    }
-
-    .code__line {
-      margin: 0;
-    }
-
-    .code__line.indent {
-      padding-left: 24px;
-    }
-
-    .ck {
+    .gallery__slide-placeholder i {
+      font-size: 4rem;
       color: var(--accent);
+      opacity: 0.2;
     }
 
-    .cv {
-      color: var(--purple);
+    .gallery__title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.85));
+      z-index: 2;
     }
 
-    .co {
-      color: var(--accent-3);
+    .gallery__title-text {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
-    .cb {
-      color: #818cf8;
+    .gallery__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(10, 10, 15, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
     }
 
-    .cs {
-      color: #fbbf24;
+    .card--gallery:hover .gallery__nav {
+      opacity: 1;
     }
 
-    .cm {
-      color: var(--text-muted);
+    .gallery__nav:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-50%) scale(1.1);
     }
 
-    .cn {
-      color: var(--green);
+    .gallery__nav--prev {
+      left: 16px;
+    }
+
+    .gallery__nav--next {
+      right: 16px;
+    }
+
+    .gallery__dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .gallery__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery__dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
     }
 
     /* -- Stats -- */
@@ -1606,6 +1643,10 @@
         grid-column: span 2;
       }
 
+      .card--gallery {
+        grid-column: span 2;
+      }
+
       .skills__grid {
         grid-template-columns: 1fr;
       }
@@ -1780,31 +1821,49 @@
             </div>
           </div>
 
-          <!-- Profile Terminal -->
-          <div class="card card--code" data-delay="200">
-            <div class="code__deco-circle"></div>
-            <div class="code__deco-circle c2"></div>
-            <div class="code__dots"><span></span><span></span><span></span></div>
-            <div class="code__line"><span class="cm">// profile.config.ts</span></div>
-            <div class="code__line"><span class="ck">export</span> <span class="ck">const</span> <span
-                class="cv">profile</span> <span class="co">=</span> <span class="cb">{</span></div>
-            <div class="code__line indent"><span class="cv">name</span><span class="cm">:</span> <span
-                class="cs">'賴維祥'</span><span class="cm">,</span></div>
-            <div class="code__line indent"><span class="cv">alias</span><span class="cm">:</span> <span
-                class="cs">'Shawn'</span><span class="cm">,</span></div>
-            <div class="code__line indent"><span class="cv">position</span><span class="cm">:</span> <span
-                class="cs">'Full-Stack Engineer'</span><span class="cm">,</span></div>
-            <div class="code__line indent"><span class="cv">org</span><span class="cm">:</span> <span class="cs">'Cathay
-                United Bank'</span><span class="cm">,</span></div>
-            <div class="code__line indent"><span class="cv">frontend</span><span class="cm">:</span> <span
-                class="cs">'Angular'</span><span class="cm">,</span></div>
-            <div class="code__line indent"><span class="cv">backend</span><span class="cm">:</span> <span
-                class="cs">'Spring Boot'</span><span class="cm">,</span></div>
-            <div class="code__line indent"><span class="cv">specialty</span><span class="cm">:</span> <span
-                class="cs">'SD Spec &amp; System Design'</span><span class="cm">,</span></div>
-            <div class="code__line indent"><span class="cv">mentor</span><span class="cm">:</span> <span
-                class="cn">true</span></div>
-            <div class="code__line"><span class="cb">}</span> <span class="ck">as const</span><span class="cm">;</span>
+          <!-- Work Gallery -->
+          <div class="card card--gallery" data-delay="200">
+            <div class="gallery__container">
+              <div class="gallery__slides">
+                <!-- Slide 1 -->
+                <div class="gallery__slide active" data-title="Angular 培訓講師">
+                  <div class="gallery__slide-placeholder">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                  </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="gallery__slide" data-title="系統開發團隊協作">
+                  <div class="gallery__slide-placeholder">
+                    <i class="fas fa-users-cog"></i>
+                  </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="gallery__slide" data-title="前後端開發工作">
+                  <div class="gallery__slide-placeholder">
+                    <i class="fas fa-laptop-code"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Navigation Arrows -->
+              <button class="gallery__nav gallery__nav--prev">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="gallery__nav gallery__nav--next">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+
+              <!-- Title Overlay -->
+              <div class="gallery__title">
+                <div class="gallery__title-text">Angular 培訓講師</div>
+              </div>
+
+              <!-- Dots Navigation -->
+              <div class="gallery__dots">
+                <span class="gallery__dot active" data-index="0"></span>
+                <span class="gallery__dot" data-index="1"></span>
+                <span class="gallery__dot" data-index="2"></span>
+              </div>
             </div>
           </div>
 
@@ -2153,7 +2212,7 @@
         </div>
         <div class="edu__grid">
           <div class="edu-card">
-            <div class="edu-card__icon">🎓</div>
+            <div class="edu-card__icon"><i class="fas fa-graduation-cap"></i></div>
             <div>
               <div class="edu-card__school">國立臺灣師範大學</div>
               <div class="edu-card__dept">運動休閒與餐旅管理研究所</div>
@@ -2162,7 +2221,7 @@
             </div>
           </div>
           <div class="edu-card">
-            <div class="edu-card__icon">📚</div>
+            <div class="edu-card__icon"><i class="fas fa-book"></i></div>
             <div>
               <div class="edu-card__school">國立臺灣師範大學</div>
               <div class="edu-card__dept">社會教育系</div>
@@ -2231,7 +2290,7 @@
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__text">© 2025 <strong>Shawn Lai</strong></div>
+      <div class="footer__text">© 2026 <strong>Shawn Lai</strong></div>
       <div class="footer__social">
         <a href="https://www.shawndesigner.com/" target="_blank" class="footer__social-link" title="Website"><i
             class="fas fa-globe"></i></a>
@@ -2261,6 +2320,7 @@
         initCards();
         initTheme();
         initNav();
+        initGallery();
         initTimeline();
         initProjects();
         initStats();
@@ -2329,6 +2389,56 @@
             l.classList.toggle('active', l.dataset.section === current);
           });
         });
+      }
+
+      /* ---------- GALLERY ---------- */
+      function initGallery() {
+        const gallery = document.querySelector('.card--gallery');
+        if (!gallery) return;
+
+        const slides = gallery.querySelectorAll('.gallery__slide');
+        const dots = gallery.querySelectorAll('.gallery__dot');
+        const prevBtn = gallery.querySelector('.gallery__nav--prev');
+        const nextBtn = gallery.querySelector('.gallery__nav--next');
+        const titleText = gallery.querySelector('.gallery__title-text');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+          // Remove active class from all slides and dots
+          slides.forEach(s => s.classList.remove('active'));
+          dots.forEach(d => d.classList.remove('active'));
+
+          // Add active class to current slide and dot
+          slides[index].classList.add('active');
+          dots[index].classList.add('active');
+
+          // Update title
+          const title = slides[index].dataset.title;
+          titleText.textContent = title;
+
+          currentIndex = index;
+        }
+
+        function nextSlide() {
+          const next = (currentIndex + 1) % slides.length;
+          showSlide(next);
+        }
+
+        function prevSlide() {
+          const prev = (currentIndex - 1 + slides.length) % slides.length;
+          showSlide(prev);
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => showSlide(index));
+        });
+
+        // Auto play (optional - uncomment if needed)
+        // setInterval(nextSlide, 5000);
       }
 
       /* ---------- TIMELINE ---------- */
