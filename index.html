@@ -809,6 +809,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
     }
 
     .gallery__slide-placeholder {
@@ -1445,6 +1446,19 @@
       gap: 32px;
     }
 
+    .contact__simple {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact__simple .contact__item {
+      flex: 1;
+      min-width: 280px;
+    }
+
     .contact__info {
       display: flex;
       flex-direction: column;
@@ -1491,6 +1505,12 @@
       font-weight: 600;
       color: var(--accent);
       margin-top: 2px;
+      transition: var(--transition);
+    }
+
+    .contact__value:hover {
+      color: var(--text);
+      text-decoration: underline;
     }
 
     .contact__form {
@@ -1625,6 +1645,10 @@
 
       .contact__grid {
         grid-template-columns: 1fr;
+      }
+
+      .contact__simple {
+        flex-wrap: wrap;
       }
     }
 
@@ -2089,7 +2113,7 @@
 
           <div class="project-card">
             <div class="project-card__img">
-              <i class="fas fa-heart placeholder-icon"></i>
+              <img src="https://res.cloudinary.com/dnqduthcp/image/upload/v1774198720/weddingWeb_t966ze.png" alt="">
               <div class="project-card__corner top-right"></div>
               <div class="project-card__corner bottom-left"></div>
               <div class="project-card__info">
@@ -2125,7 +2149,9 @@
 
           <div class="project-card">
             <div class="project-card__img">
-              <i class="fas fa-chart-line placeholder-icon"></i>
+              <img
+                src="https://res.cloudinary.com/dnqduthcp/image/upload/v1774197346/Gemini_Generated_Image_1ixrdt1ixrdt1ixr_fv6nrs.png"
+                alt="">
               <div class="project-card__corner top-right"></div>
               <div class="project-card__corner bottom-left"></div>
               <div class="project-card__info">
@@ -2245,41 +2271,21 @@
           </div>
           <p class="section__subtitle">歡迎來信聊聊合作機會，期待與你交流。</p>
         </div>
-        <div class="contact__grid">
-          <div class="contact__info">
-            <div class="contact__item">
-              <div class="contact__icon"><i class="fas fa-envelope"></i></div>
-              <div>
-                <div class="contact__label">Email</div>
-                <div class="contact__value">shawn110657@gmail.com</div>
-              </div>
-            </div>
-
-            <div class="contact__item">
-              <div class="contact__icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div>
-                <div class="contact__label">Location</div>
-                <div class="contact__value">桃園市中壢區</div>
-              </div>
-            </div>
-            <div class="contact__item">
-              <div class="contact__icon"><i class="fas fa-globe"></i></div>
-              <div>
-                <div class="contact__label">Website</div>
-                <a href="https://www.shawndesigner.com/" target="_blank" class="contact__value">shawndesigner.com</a>
-              </div>
+        <div class="contact__simple">
+          <div class="contact__item">
+            <div class="contact__icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="contact__label">Email</div>
+              <a href="mailto:shawn110657@gmail.com" class="contact__value">shawn110657@gmail.com</a>
             </div>
           </div>
-          <form class="contact__form" id="contactForm">
-            <input type="text" class="contact__input" placeholder="Name 姓名" required>
-            <input type="email" class="contact__input" placeholder="Email 信箱" required>
-            <input type="text" class="contact__input" placeholder="Subject 主旨">
-            <textarea class="contact__input contact__textarea" placeholder="Message 訊息" rows="5" required></textarea>
-            <button type="submit" class="contact__btn">
-              <span>Send Message</span>
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
+          <div class="contact__item">
+            <div class="contact__icon"><i class="fas fa-globe"></i></div>
+            <div>
+              <div class="contact__label">Website</div>
+              <a href="https://www.shawndesigner.com/" target="_blank" class="contact__value">shawndesigner.com</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2322,7 +2328,6 @@
         initTimeline();
         initProjects();
         initStats();
-        initForm();
       }
 
       /* ---------- CARD REVEAL ---------- */
@@ -2487,15 +2492,6 @@
           });
         }, { threshold: 0.5 });
         document.querySelectorAll('.card--stats').forEach(c => obs.observe(c));
-      }
-
-      /* ---------- FORM ---------- */
-      function initForm() {
-        document.getElementById('contactForm').addEventListener('submit', e => {
-          e.preventDefault();
-          alert('訊息已送出！感謝您的聯繫。');
-          e.target.reset();
-        });
       }
 
     })();
